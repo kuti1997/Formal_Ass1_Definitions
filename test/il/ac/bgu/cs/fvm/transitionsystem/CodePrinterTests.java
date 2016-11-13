@@ -6,8 +6,6 @@ import static il.ac.bgu.cs.fvm.util.CollectionHelper.set;
 import static il.ac.bgu.cs.fvm.util.CollectionHelper.transition;
 import il.ac.bgu.cs.fvm.util.Pair;
 import il.ac.bgu.cs.fvm.util.codeprinter.TsPrinter;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import static org.junit.Assert.assertEquals;
 
 /**
