@@ -14,6 +14,8 @@
             <file>file:/Users/michael/Documents/PhD/Semesters/2016b/fvm/code/BGU-FVM/application/src/il/ac/bgu/cs/fvm/nanopromela/tst2.np</file>
             <file>file:/Users/michael/Documents/PhD/Semesters/2016b/fvm/code/BGU-FVM/application/src/il/ac/bgu/cs/fvm/nanopromela/tst3.np</file>
         </group>
-        <group name="FVM"/>
+        <group name="FVM">
+            <file>file:/Users/michael/Documents/PhD/teaching/FVM/HW-Framework/src/il/ac/bgu/cs/fvm/transitionsystem/StAXTransitionSystemXmlFormat.java</file>
+        </group>
     </open-files>
 </project-private>
