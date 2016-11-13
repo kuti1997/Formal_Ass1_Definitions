@@ -18,7 +18,7 @@ public interface ConditionDef {
 	 * @return True if the condition is valid for this specification and is met
 	 *         for the given variable evaluation.
 	 */
-	public boolean evaluate(Map<String, Object> eval, String condition);
+	boolean evaluate(Map<String, Object> eval, String condition);
 
 	/*
 	 * A generalization of the above method to sets of definitions.

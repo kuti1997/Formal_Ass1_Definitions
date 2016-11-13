@@ -23,7 +23,7 @@ import java.util.Map;
 public interface FvmFacade {
 
     @SuppressWarnings("unchecked")
-    public static FvmFacade createInstance() {
+    static FvmFacade createInstance() {
         try {
             return ((Class<FvmFacade>) Class.forName("il.ac.bgu.cs.fvm.impl.FvmFacadeImpl")).newInstance();
         } catch (InstantiationException | IllegalAccessException ex) {
@@ -108,20 +108,16 @@ public interface FvmFacade {
     <L1, L2, A> ProgramGraph<Pair<L1, L2>, A> interleave(ProgramGraph<L1, A> pg1,
                                                          ProgramGraph<L2, A> pg2);
 
-    public TransitionSystem<Pair<List<Boolean>, List<Boolean>>, List<Boolean>, Object> transitionSystemFromCircuit(
-            Circuit c);
+    TransitionSystem<Pair<List<Boolean>, List<Boolean>>, List<Boolean>, Object> 
+        transitionSystemFromCircuit(Circuit c);
 
-    // TODO convert to templetic
-    //TransitionSystem transitionSystemFromProgramGraph(ProgramGraph pg, Set<ActionDef> actionDefs, Set<ConditionDef> conditionDefs);
     <L, A> TransitionSystem<Pair<L, Map<String, Object>>, A, String> transitionSystemFromProgramGraph(
             ProgramGraph<L, A> pg, Set<ActionDef> actionDefs,
             Set<ConditionDef> conditionDefs);
 
-    // TODO convert to templetic
     <Sts, Saut, A, P> TransitionSystem<Pair<Sts, Saut>, A, P> product(
             TransitionSystem<Sts, A, P> ts, Automaton<Saut> aut);
 
-    // TODO convert to templetic
     TransitionSystem transitionSystemFromChannelSystem(ChannelSystem cs);
 
     ProgramGraph programGraphFromNanoPromela(String filename) throws Exception;

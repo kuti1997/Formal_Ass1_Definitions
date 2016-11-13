@@ -15,14 +15,11 @@ public interface InterleavingActDef extends ActionDef {
 	 * action _C!0 cannot be performed alone as it requires, e.g., to be taken
 	 * simultaneously, so {@code isOneSidedAction(0, "_C!0"} is {@code true}. 
 	 * 
-	 * @param side
-	 *            The side of the action.
-	 * @param action
-	 *            The name of the action.
+	 * @param action The name of the action.
 	 * @return True if the given action cannot be taked alone because it has to
 	 *         wait for its counterpart.
 	 */
-	public boolean isOneSidedAction(String action);
+	boolean isOneSidedAction(String action);
 
 	/**
 	 * An extension of {@code isOneSidedAction} to a set of definition objects.  

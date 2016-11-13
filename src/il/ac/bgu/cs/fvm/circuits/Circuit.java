@@ -36,7 +36,7 @@ public interface Circuit {
      * @param inputs
      * @return
      */
-    public List<Boolean> updateRegisters(List<Boolean> registers, List<Boolean> inputs);
+    List<Boolean> updateRegisters(List<Boolean> registers, List<Boolean> inputs);
 
     /**
      * A method that updates the values of the registers based on the values of
@@ -48,5 +48,5 @@ public interface Circuit {
      * @param inputs A list representing the truth value of each output.
      * @return
      */
-    public List<Boolean> computeOutputs(List<Boolean> registers, List<Boolean> inputs);
+    List<Boolean> computeOutputs(List<Boolean> registers, List<Boolean> inputs);
 }

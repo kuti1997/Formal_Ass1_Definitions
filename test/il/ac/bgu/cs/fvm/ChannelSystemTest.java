@@ -57,7 +57,7 @@ public class ChannelSystemTest {
 
     @Test
     @SuppressWarnings("serial")
-    public void different_pg_order() throws Exception {
+    public void differentPgOrder() throws Exception {
 
         FvmFacade fvmFacadeImpl = FvmFacade.createInstance();
 

@@ -244,11 +244,6 @@ public class TsPrinter {
         return strm.toString();
     }
 
-    private String getClassName(Class<?> clz) {
-        String[] comps = clz.getName().split("\\.");
-        return comps[comps.length - 1];
-    }
-
     public void printObject(Object o) {
         if (o == null) {
             prt.print("null");

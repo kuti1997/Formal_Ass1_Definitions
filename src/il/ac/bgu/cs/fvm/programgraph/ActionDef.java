@@ -17,7 +17,7 @@ public interface ActionDef {
 	 *            specified by this object.
 	 * @return True if the string matches the action.
 	 */
-	public boolean isMatchingAction(Object candidate);
+	boolean isMatchingAction(Object candidate);
 
 	/**
 	 * apply the effect of the action to the variables.
@@ -28,7 +28,7 @@ public interface ActionDef {
 	 *            The action string.
 	 * @return An evaluation of the variables after the action.
 	 */
-	public Map<String, Object> effect(Map<String, Object> eval, Object action);
+	Map<String, Object> effect(Map<String, Object> eval, Object action);
 
 	/*
 	 * A generalization of the above method to sets of definitions.
@@ -44,7 +44,7 @@ public interface ActionDef {
 	/*
 	 * A generalization of the above method to sets of definitions.
 	 */
-	static public boolean isMatchingAction(Set<ActionDef> ads, Object candidate) {
+	static boolean isMatchingAction(Set<ActionDef> ads, Object candidate) {
 		return ads.stream().anyMatch(ad -> ad.isMatchingAction(candidate));
 	}
 

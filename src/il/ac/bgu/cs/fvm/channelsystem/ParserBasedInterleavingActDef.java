@@ -10,8 +10,6 @@ import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaLexer;
 import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser;
 import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.JoinedContext;
 import il.ac.bgu.cs.fvm.programgraph.ThrowingErrorListener;
-import static java.lang.System.out;
-import org.antlr.v4.runtime.RecognitionException;
 
 /**
  * A class for identifying and interpreting combined actions such as "_C!0 |
@@ -22,16 +20,9 @@ import org.antlr.v4.runtime.RecognitionException;
  */
 public class ParserBasedInterleavingActDef implements InterleavingActDef {
 
-    /*
-	 * (non-Javadoc)
-	 * 
-	 * @see il.ac.bgu.cs.fvm.programgraph.ActionDef#effect(java.util.Map,
-	 * java.lang.String)
-     */
     @Override
     public Map<String, Object> effect(Map<String, Object> eval, Object action) {
-        if (action.equals(
-                "")) {
+        if (action.equals("")) {
             return eval;
         }
 
@@ -76,9 +67,6 @@ public class ParserBasedInterleavingActDef implements InterleavingActDef {
         }
     }
 
-    /* (non-Javadoc)
-	 * @see il.ac.bgu.cs.fvm.programgraph.ActionDef#isMatchingAction(java.lang.String)
-     */
     @Override
     public boolean isMatchingAction(Object action) {
         return action.equals("") || parseAction((String) action) != null;

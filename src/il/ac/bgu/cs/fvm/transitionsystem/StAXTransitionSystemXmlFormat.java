@@ -306,12 +306,12 @@ public class StAXTransitionSystemXmlFormat implements TransitionSystemXmlFormat 
 	}
 
 	@FunctionalInterface
-	public static interface ThrowingFunction<R> {
+	public interface ThrowingFunction<R> {
 		R apply() throws Exception;
 	}
 
 	@FunctionalInterface
-	public static interface VoidThrowingFunction {
+	public interface VoidThrowingFunction {
 		void apply() throws Exception;
 	}
 
