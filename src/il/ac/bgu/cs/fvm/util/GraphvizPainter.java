@@ -58,7 +58,7 @@ public class GraphvizPainter<S,A,P> {
     }
     
     private void drawNodes( TransitionSystem<S,A,P> ts, StringBuilder sb ) {
-        sb.append("node [shape=circle, fontname=\"Courier\"];\n");
+        sb.append("node [shape=box, fontname=\"Courier\"];\n");
         idByState.forEach( (s,id) -> {
             sb.append(id).append("[label=\"")
                     .append( statePainter.apply(s).replace("\"", "\\\"\\") )
@@ -67,6 +67,7 @@ public class GraphvizPainter<S,A,P> {
                 String startId = "start_" + id;
                 sb.append(startId).append( "[label=\"\", shape=none];\n");
                 sb.append(startId).append("->").append(id).append(";\n");
+                sb.append("{rank=source; ").append(id).append("; start_").append(id).append("}\n");
             }
         });
     }

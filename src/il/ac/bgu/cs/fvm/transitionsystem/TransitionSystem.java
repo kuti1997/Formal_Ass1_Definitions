@@ -40,22 +40,25 @@ public interface TransitionSystem<STATE,ACTION,ATOMIC_PROPOSITION> {
 
 	/**
 	 * Add an action.
-	 * 
+	 * Note: This method must be idempotent.
+     * 
 	 * @param action A name for the new action.
 	 */
 	void addAction(ACTION action);
 
 	/**
 	 * Add an initial state.
-	 * 
+	 * Note: This method must be idempotent.
+     * 
 	 * @param state A state to add to the set of initial states.
 	 * @throws FVMException If the state is not in the set of states.
 	 */
 	void addInitialState(STATE state) throws FVMException;
 
 	/**
-	 * Ass a state.
-	 * 
+	 * Add a state.
+	 * Note: This method must be idempotent.
+     * 
 	 * @param state A name for the new state.
 	 * 
 	 */
@@ -63,7 +66,8 @@ public interface TransitionSystem<STATE,ACTION,ATOMIC_PROPOSITION> {
 
 	/**
 	 * Add a transition.
-	 * 
+	 * Note: This method must be idempotent.
+     * 
 	 * @param t The transition to add.
 	 * @throws FVMException If the states and the actions do not exist.
 	 */

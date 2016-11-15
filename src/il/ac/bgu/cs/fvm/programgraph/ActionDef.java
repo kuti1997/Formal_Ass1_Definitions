@@ -21,7 +21,8 @@ public interface ActionDef {
 
 	/**
 	 * apply the effect of the action to the variables.
-	 * 
+	 * Note: If the returned value is changed, it must be a fresh copy.
+     * 
 	 * @param eval
 	 *            The evaluation of the variables before the action.
 	 * @param action
