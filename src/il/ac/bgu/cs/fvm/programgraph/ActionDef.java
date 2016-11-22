@@ -4,8 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * An object the specifies the format and the effect of an action in a program
- * graph.
+ * Specifies the format and the effect of an action in a {@link ProgramGraph}.
  */
 public interface ActionDef {
 
@@ -15,7 +14,7 @@ public interface ActionDef {
 	 * @param candidate
 	 *            A string that we want to check if it matches the action
 	 *            specified by this object.
-	 * @return True if the string matches the action.
+	 * @return {@code true} if the string matches the action.
 	 */
 	boolean isMatchingAction(Object candidate);
 

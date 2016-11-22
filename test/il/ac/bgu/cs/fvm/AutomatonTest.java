@@ -19,7 +19,7 @@ public class AutomatonTest {
     
 	@Test
 	public void automatonTest() {
-		Automaton<State> aut = new Automaton<>();
+		Automaton<State, String> aut = new Automaton();
 
 		Set<String> a = set("a");
 		Set<String> ab = set("a", "b");

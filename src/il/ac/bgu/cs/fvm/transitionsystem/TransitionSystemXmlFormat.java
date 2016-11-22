@@ -18,8 +18,8 @@ import il.ac.bgu.cs.fvm.exceptions.InvalidTSDescriptionException;
  */
 public interface TransitionSystemXmlFormat {
 
-	TransitionSystem read(Reader reader) throws Exception;
+	TransitionSystem<String,String,String> read(Reader reader) throws Exception;
 
-	void write(TransitionSystem ts, Writer output) throws InvalidTSDescriptionException, SAXException, ParserConfigurationException, IOException, XMLStreamException;
+	void write(TransitionSystem<String,String,String> ts, Writer output) throws InvalidTSDescriptionException, SAXException, ParserConfigurationException, IOException, XMLStreamException;
 
 }

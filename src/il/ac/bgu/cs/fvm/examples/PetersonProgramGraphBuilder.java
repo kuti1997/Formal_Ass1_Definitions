@@ -16,8 +16,8 @@ public class PetersonProgramGraphBuilder {
      *
      * @return A program graph representing the process with the given id
      */
-    public static ProgramGraph build(int id) {
-        ProgramGraph pg = FvmFacade.createInstance().createProgramGraph();
+    public static ProgramGraph<String, String> build(int id) {
+        ProgramGraph<String, String> pg = FvmFacade.createInstance().createProgramGraph();
 
         String noncrit = "noncrit" + id;
         String wait = "wait" + id;
@@ -29,9 +29,9 @@ public class PetersonProgramGraphBuilder {
 
         pg.addInitialLocation(noncrit);
 
-        pg.addTransition(new PGTransition(noncrit, "true", "atomic{b" + id + ":=1;x:=" + (id == 1 ? 2 : 1) + "}", wait));
-        pg.addTransition(new PGTransition(wait, "x==" + id + " || b" + (id == 1 ? 2 : 1) + "==0", "", crit));
-        pg.addTransition(new PGTransition(crit, "true", "b" + id + ":=0", noncrit));
+        pg.addTransition(new PGTransition<>(noncrit, "true", "atomic{b" + id + ":=1;x:=" + (id == 1 ? 2 : 1) + "}", wait));
+        pg.addTransition(new PGTransition<>(wait, "x==" + id + " || b" + (id == 1 ? 2 : 1) + "==0", "", crit));
+        pg.addTransition(new PGTransition<>(crit, "true", "b" + id + ":=0", noncrit));
 
         pg.addInitalization(asList("b" + id + ":=0", "x:=1"));
         pg.addInitalization(asList("b" + id + ":=0", "x:=2"));

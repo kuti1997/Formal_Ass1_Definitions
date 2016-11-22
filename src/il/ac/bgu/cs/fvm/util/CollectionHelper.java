@@ -14,38 +14,49 @@ import java.util.stream.Stream;
 /**
  * Some methods to support literal collections.
  *
- * @author michael
  */
 public class CollectionHelper {
 
-    public static PGTransition pgtransition(Object from, String cond, Object action, Object to) {
-        return new PGTransition(from, cond,action, to);
+    public static <L,A> PGTransition<L,A> pgtransition(L from, String cond, A action, L to) {
+        return new PGTransition<>(from, cond,action, to);
     }
 
-    public static Transition transition(Object from, Object action, Object to) {
-        return new Transition(from, action, to);
+    public static Transition<Object, Object> transition(Object from, Object action, Object to) {
+        return new Transition<Object, Object>(from, action, to);
     }
 
-    public static Pair p(Object x, Object y) {
-        return new Pair(x, y);
+    /*
+    public static <T1,T2> Pair<T1, T2> p(T1 x, T2 y) {
+        return new Pair<T1, T2>(x, y);
+    }
+    */
+    
+    // The above is better but takes ages to build the project (javac bug?)
+    @SuppressWarnings("rawtypes")
+	public static <T1,T2> Pair p(T1 x, T2 y) {
+        return new Pair<T1, T2>(x, y);
     }
 
-    public static  Set set(Object... ses) {
-        return new HashSet(Arrays.asList(ses));
+
+    @SafeVarargs
+	public static  <T> Set<T> set(T... ses) {
+        return new HashSet<T>(Arrays.asList(ses));
     }
 
-    public static  List seq(Object... ses) {
+    @SafeVarargs
+	public static  <T> List<T> seq(T... ses) {
         return Arrays.asList(ses);
     }
 
-    public static  Map map(Pair... pairs) {
+    @SuppressWarnings("unchecked")
+	public static <K,V> Map<K,V> map(Pair<K,V>... pairs) {
         return IntStream.range(0, pairs.length)
                 .mapToObj(i -> pairs[i])
                 .collect(Collectors.toMap(Pair::getFirst, Pair::getSecond));
     }
 
-    public static  Stream product(Set s1, Set s2) {
+    public static  <T1,T2> Stream<Pair<T1,T2>> product(Set<T1> s1, Set<T2> s2) {
         return s1.stream().flatMap(e1 -> s2.stream().map(e2
-                -> new Pair(e1, e2)));
+                -> new Pair<T1, T2>(e1, e2)));
     }
 }

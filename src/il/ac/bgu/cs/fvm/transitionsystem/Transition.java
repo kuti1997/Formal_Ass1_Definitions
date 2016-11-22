@@ -81,6 +81,7 @@ public class Transition<STATE, ACTION> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		@SuppressWarnings("rawtypes")
 		Transition other = (Transition) obj;
 		if (action == null) {
 			if (other.action != null)

@@ -16,7 +16,7 @@ import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.BoolexprContext;
  */
 public class ParserBasedCondDef implements ConditionDef {
 
-	/* (non-Javadoc)
+	/**
 	 * @see il.ac.bgu.cs.fvm.programgraph.ConditionDef#evaluate(java.util.Map, java.lang.String)
 	 */
 	@Override

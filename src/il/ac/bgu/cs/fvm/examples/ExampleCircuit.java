@@ -34,17 +34,17 @@ public class ExampleCircuit implements Circuit {
     }
 
     @Override
-    public List getInputPortNames() {
+    public List<String> getInputPortNames() {
         return asList("x");
     }
 
     @Override
-    public List getRegisterNames() {
+    public List<String> getRegisterNames() {
         return asList("r");
     }
 
     @Override
-    public List getOutputPortNames() {
+    public List<String> getOutputPortNames() {
         return asList("y");
     }
 

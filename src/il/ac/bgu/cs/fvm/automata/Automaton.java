@@ -5,11 +5,16 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class Automaton<STATE> {
+/**
+ * An none-deterministic automaton, composed of states and transitions.
+ * @param <STATE> Type of states.
+ * @param <L> Type of transitions/alphabet the automaton understands.
+ */
+public class Automaton<STATE, L> {
 
-	private final Map<STATE, Map<Set<String>, Set<STATE>>>	transitions;
-	private final Set<STATE>                                initial;
-	private final Set<STATE>                                accepting;
+	private final Map<STATE, Map<Set<L>, Set<STATE>>>	transitions;
+	private final Set<STATE>                            initial;
+	private final Set<STATE>                            accepting;
 
 	public Automaton() {
 		transitions = new HashMap<>();
@@ -17,7 +22,7 @@ public class Automaton<STATE> {
 		accepting = new HashSet<>();
 	}
 
-	public void addTransition(STATE source, Set<String> symbol, STATE destination) {
+	public void addTransition(STATE source, Set<L> symbol, STATE destination) {
 		if (!transitions.containsKey(source))
 			addState(source);
 
@@ -37,11 +42,19 @@ public class Automaton<STATE> {
 			transitions.put(s, new HashMap<>());
 	}
 
-	public Iterable<STATE> nextStates(STATE source, Set<String> symbol) {
-		if (!transitions.containsKey(source))
-			throw new IllegalArgumentException();
-		else
+    /**
+     * Returns the states connected to {@code source} with transitions labeled 
+     * by {@code symbol}.
+     * @param source
+     * @param symbol
+     * @return Iterable of the states immediately reachable from {@code source}, given {@code symbol}.
+     */
+	public Iterable<STATE> nextStates(STATE source, Set<L> symbol) {
+		if (!transitions.containsKey(source)) {
+			throw new IllegalArgumentException("State " + source +" not in automaton.");
+        } else {
 			return transitions.get(source).get(symbol);
+        }
 	}
 
 	public void setInitial(STATE s) {

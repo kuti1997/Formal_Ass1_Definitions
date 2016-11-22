@@ -12,11 +12,11 @@ import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.JoinedContext;
 import il.ac.bgu.cs.fvm.programgraph.ThrowingErrorListener;
 
 /**
- * A class for identifying and interpreting combined actions such as "_C!0 |
- * _C?x". As in this example, joined actions involve reading and writing to
- * channels with zero capacity separated by the '|' character. Channels with
- * zero capacity are marked by having an underscore in front of the channel
- * name.
+ * A class for identifying and interpreting combined actions such as 
+ * {@code _C!0 | _C?x}. As in this example, joined actions involve reading and
+ * writing to channels with zero capacity separated by the '|' character.
+ * Channels with zero capacity are marked by an underscore in front of 
+ * the channel name.
  */
 public class ParserBasedInterleavingActDef implements InterleavingActDef {
 
@@ -72,10 +72,6 @@ public class ParserBasedInterleavingActDef implements InterleavingActDef {
         return action.equals("") || parseAction((String) action) != null;
     }
 
-    // @Override
-    /* (non-Javadoc)
-	 * @see il.ac.bgu.cs.fvm.channelsystem.InterleavingActDef#isOneSidedAction(java.lang.String)
-     */
     @Override
     public boolean isOneSidedAction(String action) {
         NanoPromelaLexer lexer = new NanoPromelaLexer(new ANTLRInputStream(action));

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * A datastructure for program graphs.
+ * A data structure for program graphs.
  *
  * @param <L> Type of the locations.
  * @param <A> Type of the actions.
@@ -43,7 +43,7 @@ public interface ProgramGraph<L, A> {
      *
      * @param t A transition to add.
      */
-    void addTransition(PGTransition t);
+    void addTransition(PGTransition<L,A> t);
 
     /**
      * @return The set of initialization lists.
@@ -82,10 +82,10 @@ public interface ProgramGraph<L, A> {
      *
      * @param t A transition to remove.
      */
-    void removeTransition(PGTransition t);
+    void removeTransition(PGTransition<L,A> t);
 
     /**
-     * Set the name of the ptogram graph.
+     * Set the name of the program graph.
      *
      * @param name The new name.
      */

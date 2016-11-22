@@ -59,6 +59,7 @@ public class StAXTransitionSystemXmlFormat implements TransitionSystemXmlFormat 
 	static final String attFrom = "from";
 	static final String attTo = "to";
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void write(TransitionSystem ts, Writer output) throws XMLStreamException {
 		write(ts, XMLOutputFactory.newFactory().createXMLStreamWriter(output));
@@ -139,7 +140,7 @@ public class StAXTransitionSystemXmlFormat implements TransitionSystemXmlFormat 
 		SAXParser parser = fact.newSAXParser();
 		XMLReader xmlReader = parser.getXMLReader();
 
-		final AtomicReference<TransitionSystem> tsRef = new AtomicReference<>();
+		final AtomicReference<TransitionSystem<String, String, String>> tsRef = new AtomicReference<>();
 		final List<FVMException> errors = new LinkedList<>();
 
 		xmlReader.setContentHandler(new ContentHandler() {
@@ -241,7 +242,7 @@ public class StAXTransitionSystemXmlFormat implements TransitionSystemXmlFormat 
 						errors.add(new InvalidXmlException(loc() + " transition node should have attributes " + attFrom + ", " + attAction + ", and " + attTo, TransitionSystemPart.TRANSITIONS));
 					} else {
 						try {
-							ts.addTransition(new Transition(from, action, to));
+							ts.addTransition(new Transition<>(from, action, to));
 						} catch (FVMException fe) {
 							errors.add(fe);
 						}
@@ -306,12 +307,12 @@ public class StAXTransitionSystemXmlFormat implements TransitionSystemXmlFormat 
 	}
 
 	@FunctionalInterface
-	public interface ThrowingFunction<R> {
+	public static interface ThrowingFunction<R> {
 		R apply() throws Exception;
 	}
 
 	@FunctionalInterface
-	public interface VoidThrowingFunction {
+	public static interface VoidThrowingFunction {
 		void apply() throws Exception;
 	}
 

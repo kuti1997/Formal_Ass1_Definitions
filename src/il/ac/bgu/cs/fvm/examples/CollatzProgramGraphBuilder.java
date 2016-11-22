@@ -10,7 +10,7 @@ public class CollatzProgramGraphBuilder {
 
     static FvmFacade fvmFacadeImpl = FvmFacade.createInstance();
 
-    public static ProgramGraph build() {
+    public static ProgramGraph<String, String> build() {
         ProgramGraph<String, String> pg = fvmFacadeImpl.createProgramGraph();
 
         String running = "running";
