@@ -18,9 +18,7 @@ import org.antlr.v4.runtime.RecognitionException;
  */
 public class ParserBasedActDef implements ActionDef {
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/** 
 	 * @see il.ac.bgu.cs.fvm.programgraph.ActionDef#effect(java.util.Map,
 	 * java.lang.String)
 	 */
@@ -60,7 +58,7 @@ public class ParserBasedActDef implements ActionDef {
 		}
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see il.ac.bgu.cs.fvm.programgraph.ActionDef#isMatchingAction(java.lang.String)
 	 */
 	@Override

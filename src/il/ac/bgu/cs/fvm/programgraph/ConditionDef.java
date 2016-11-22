@@ -4,8 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * An object that specifies the format and the truth-table of a condition in a
- * program graph.
+ * Specifies the format and the truth-table of a condition in a program graph.
  */
 public interface ConditionDef {
 	/**
@@ -15,7 +14,7 @@ public interface ConditionDef {
 	 *            The values of all the variables.
 	 * @param condition
 	 *            A string representing the condition to check.
-	 * @return True if the condition is valid for this specification and is met
+	 * @return {@code true} if the condition is valid for this specification and is met
 	 *         for the given variable evaluation.
 	 */
 	boolean evaluate(Map<String, Object> eval, String condition);

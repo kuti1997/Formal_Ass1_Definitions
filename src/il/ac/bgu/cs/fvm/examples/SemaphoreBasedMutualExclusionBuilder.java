@@ -8,8 +8,8 @@ import il.ac.bgu.cs.fvm.programgraph.ProgramGraph;
 
 public class SemaphoreBasedMutualExclusionBuilder {
 
-    public static ProgramGraph build(int id) {
-        ProgramGraph pg = FvmFacade.createInstance().createProgramGraph();
+    public static ProgramGraph<String, String> build(int id) {
+        ProgramGraph<String, String> pg = FvmFacade.createInstance().createProgramGraph();
 
         String noncrit = "noncrit" + id;
         String wait = "wait" + id;
@@ -21,9 +21,9 @@ public class SemaphoreBasedMutualExclusionBuilder {
 
         pg.addInitialLocation(noncrit);
 
-        pg.addTransition(new PGTransition(noncrit, "true", "", wait));
-        pg.addTransition(new PGTransition(wait, "y>0", "y:=y-1", crit));
-        pg.addTransition(new PGTransition(crit, "true", "y:=y+1", noncrit));
+        pg.addTransition(new PGTransition<>(noncrit, "true", "", wait));
+        pg.addTransition(new PGTransition<>(wait, "y>0", "y:=y-1", crit));
+        pg.addTransition(new PGTransition<>(crit, "true", "y:=y+1", noncrit));
 
         pg.addInitalization(asList("y:=1"));
 

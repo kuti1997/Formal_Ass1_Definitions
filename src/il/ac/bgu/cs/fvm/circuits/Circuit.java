@@ -2,7 +2,9 @@ package il.ac.bgu.cs.fvm.circuits;
 
 import java.util.List;
 
-// An interface for an abstract representation of logic circuits.
+/**
+ * An interface for an abstract representation of logic circuits.
+ */
 public interface Circuit {
 
     /**
@@ -10,43 +12,43 @@ public interface Circuit {
      *
      * @return A list of objects representing the names of the input ports.
      */
-    List getInputPortNames();
+    List<String> getInputPortNames();
 
     /**
      * A method that returns a list of names of the registers.
      *
      * @return A list of objects representing the names of the registers.
      */
-    List getRegisterNames();
+    List<String> getRegisterNames();
 
     /**
      * A method that returns a list of names of the output ports
      *
      * @return A list of objects representing the names of the output ports.
      */
-    List getOutputPortNames();
+    List<String> getOutputPortNames();
 
     /**
      * A method that updates the values of the registers based on the values of
-     * the inputs and the current vlues of the registers. The Lengths of the
-     * Boolean lists are expected to be of the same length as the lengthes of
+     * the inputs and the current values of the registers. The Lengths of the
+     * Boolean lists are expected to be of the same length as the lengths of
      * the corresponding name lists.
      *
      * @param registers
      * @param inputs
-     * @return
+     * @return New register values.
      */
-    List<Boolean> updateRegisters(List<Boolean> registers, List<Boolean> inputs);
+    public List<Boolean> updateRegisters(List<Boolean> registers, List<Boolean> inputs);
 
     /**
      * A method that updates the values of the registers based on the values of
-     * the inputs and the current vlues of the registers. The Lengths of the
+     * the inputs and the current values of the registers. The Lengths of the
      * Boolean lists are expected to be of the same length as the lengths of the
      * corresponding name lists.
      *
      * @param registers A list representing the truth value of each register.
      * @param inputs A list representing the truth value of each output.
-     * @return
+     * @return Output values.
      */
-    List<Boolean> computeOutputs(List<Boolean> registers, List<Boolean> inputs);
+    public List<Boolean> computeOutputs(List<Boolean> registers, List<Boolean> inputs);
 }

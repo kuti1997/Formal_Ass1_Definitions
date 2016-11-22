@@ -32,8 +32,8 @@ public class MutualExclusionUsingArbiter {
 		ts.addInitialState(ArState.Unlock);
         ts.addAllActions(MuAction.values());
 
-		ts.addTransition(new Transition(ArState.Unlock, MuAction.Request, ArState.Lock));
-		ts.addTransition(new Transition(ArState.Lock, MuAction.Release, ArState.Unlock));
+		ts.addTransition(new Transition<>(ArState.Unlock, MuAction.Request, ArState.Lock));
+		ts.addTransition(new Transition<>(ArState.Lock, MuAction.Release, ArState.Unlock));
 
         return ts;
     }

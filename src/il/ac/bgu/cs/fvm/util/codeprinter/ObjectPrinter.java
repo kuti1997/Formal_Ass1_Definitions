@@ -7,7 +7,6 @@ import java.io.PrintWriter;
  * 
  * @param <T> the type of object being printed.
  * 
- * @author michael
  */
 public interface ObjectPrinter<T> {
    

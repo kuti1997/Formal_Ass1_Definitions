@@ -1,6 +1,10 @@
 package il.ac.bgu.cs.fvm.programgraph;
-// Program Graph Transitions
-// ------------------------------------------------------------------------------------
+/**
+ * A transition in a {@link ProgramGraph}.
+ * 
+ * @param <L> Type of locations
+ * @param <A> Type of label
+ */
 public class PGTransition<L,A> {
 	L from;
 	String condition;
@@ -48,6 +52,7 @@ public class PGTransition<L,A> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		@SuppressWarnings("rawtypes")
 		PGTransition other = (PGTransition) obj;
 		if (action == null) {
 			if (other.action != null)
@@ -166,10 +171,6 @@ public class PGTransition<L,A> {
 
 	@Override
 	public String toString() {
-		//return action;
-		// TODO: Define a superclass for state representation that contains a
-		// getActionName method instead of using toString.
-		
 		return "PGTransition [from=" + from + ", condition=" + condition + ", action =" + action + ", to=" + to + "]";
 	}
 

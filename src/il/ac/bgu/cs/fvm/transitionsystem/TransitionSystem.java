@@ -211,7 +211,8 @@ public interface TransitionSystem<STATE,ACTION,ATOMIC_PROPOSITION> {
     ////////////////////////////////////////////////////////////////////////////
     /// Convenience default method for less painful system creation.
     
-    default void addStates( STATE... states ) {
+    @SuppressWarnings("unchecked")
+	default void addStates( STATE... states ) {
         for ( STATE s : states ) {
             addState(s);
         }
@@ -229,6 +230,7 @@ public interface TransitionSystem<STATE,ACTION,ATOMIC_PROPOSITION> {
         }
     }
     
+    @SuppressWarnings("unchecked")
     default void addActions( ACTION... actions ) {
         for ( ACTION a : actions ) {
             addAction(a);
@@ -247,6 +249,7 @@ public interface TransitionSystem<STATE,ACTION,ATOMIC_PROPOSITION> {
         }
     }
     
+    @SuppressWarnings("unchecked")
     default void addAtomicPropositions( ATOMIC_PROPOSITION... aps ) {
         for ( ATOMIC_PROPOSITION ap : aps ) {
             addAtomicProposition(ap);

@@ -1,11 +1,5 @@
 package il.ac.bgu.cs.fvm.util.codeprinter;
 
-import il.ac.bgu.cs.fvm.programgraph.PGTransition;
-import il.ac.bgu.cs.fvm.programgraph.ProgramGraph;
-import il.ac.bgu.cs.fvm.transitionsystem.Transition;
-import il.ac.bgu.cs.fvm.transitionsystem.TransitionSystem;
-import il.ac.bgu.cs.fvm.util.CollectionHelper;
-import il.ac.bgu.cs.fvm.util.Pair;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Deque;
@@ -16,12 +10,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import il.ac.bgu.cs.fvm.programgraph.PGTransition;
+import il.ac.bgu.cs.fvm.programgraph.ProgramGraph;
+import il.ac.bgu.cs.fvm.transitionsystem.Transition;
+import il.ac.bgu.cs.fvm.transitionsystem.TransitionSystem;
+import il.ac.bgu.cs.fvm.util.CollectionHelper;
+import il.ac.bgu.cs.fvm.util.Pair;
+
 /**
  * Prints the code needed to generate a {@link TransitionSystem}. Generated code
  * relies on static imports of {@link CollectionHelper}.
  *
- * @author michael
  */
+@SuppressWarnings("rawtypes")
 public class TsPrinter {
 
     private static final int ELEMENTS_PER_LINE = 5;
@@ -167,11 +168,11 @@ public class TsPrinter {
     private StringWriter strm;
     private PrintWriter prt;
 
-    public String print(TransitionSystem ts) {
+    @SuppressWarnings("unchecked")
+	public String print(TransitionSystem ts) {
         strm = new StringWriter();
         prt = new PrintWriter(strm);
 
-        // TODO code the TS here.
         prt.println("TransitionSystem ts = FvmFacade.createInstance().createTransitionSystem();");
         if (ts.getName() != null) {
             prt.println("ts.setName(\"" + ts.getName() + "\");");
@@ -244,6 +245,7 @@ public class TsPrinter {
         return strm.toString();
     }
 
+    @SuppressWarnings("unchecked")
     public void printObject(Object o) {
         if (o == null) {
             prt.print("null");
@@ -253,6 +255,7 @@ public class TsPrinter {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public String getAssertions(TransitionSystem ts) {
         strm = new StringWriter();
         prt = new PrintWriter(strm);

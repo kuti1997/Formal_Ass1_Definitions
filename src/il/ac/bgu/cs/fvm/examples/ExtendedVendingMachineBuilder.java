@@ -19,8 +19,8 @@ public class ExtendedVendingMachineBuilder {
 
     static int max = 2;
 
-    public static ProgramGraph build() {
-        ProgramGraph pg = FvmFacade.createInstance().createProgramGraph();
+    public static ProgramGraph<String, String> build() {
+        ProgramGraph<String, String> pg = FvmFacade.createInstance().createProgramGraph();
 
         String start = "start";
         String select = "select";
@@ -30,11 +30,11 @@ public class ExtendedVendingMachineBuilder {
 
         pg.addInitialLocation(start);
 
-        pg.addTransition(new PGTransition(start, "true", "coin", select));
-        pg.addTransition(new PGTransition(start, "true", "refill", start));
-        pg.addTransition(new PGTransition(select, "nsoda > 0", "sget", start));
-        pg.addTransition(new PGTransition(select, "nbeer > 0", "bget", start));
-        pg.addTransition(new PGTransition(select, "nbeer = 0 && nsoda = 0", "ret_coin", start));
+        pg.addTransition(new PGTransition<>(start, "true", "coin", select));
+        pg.addTransition(new PGTransition<>(start, "true", "refill", start));
+        pg.addTransition(new PGTransition<>(select, "nsoda > 0", "sget", start));
+        pg.addTransition(new PGTransition<>(select, "nbeer > 0", "bget", start));
+        pg.addTransition(new PGTransition<>(select, "nbeer = 0 && nsoda = 0", "ret_coin", start));
 
         pg.addInitalization(asList("refill"));
 
@@ -47,12 +47,7 @@ public class ExtendedVendingMachineBuilder {
         Set<ConditionDef> cond = new HashSet<>();
 
         // Define the true condition
-        cond.add(new ConditionDef() {
-            @Override
-            public boolean evaluate(Map<String, Object> eval, String condition) {
-                return condition.equals("true");
-            }
-        });
+        cond.add( (eval,condition) -> condition.equals("true") );
 
         // Define the > 0 condition
         cond.add(new ConditionDef() {

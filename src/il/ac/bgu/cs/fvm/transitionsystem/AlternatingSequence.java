@@ -10,34 +10,36 @@ import java.util.Objects;
 
 /**
  * An alternating sequence of states and actions.
+ * When creating instances of this class, consider using the static methods
+ * {@code of(...)}, such as {@link #of(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object).
  * @author michael
  * @param <S> Type of states.
  * @param <A> Type of actions.
  */
 public class AlternatingSequence<S,A> {
     
-    
     public static <S,A> AlternatingSequence<S,A> of(S s) {
-        return new AlternatingSequence(Collections.singletonList(s));
+        return new AlternatingSequence<>(Collections.singletonList(s));
     }
     
     public static <S,A> AlternatingSequence<S,A> of(S s1, A a1, S s2) {
-        return new AlternatingSequence(Arrays.asList(s1, s2), Collections.singletonList(a1));
+        return new AlternatingSequence<>(Arrays.asList(s1, s2), Collections.singletonList(a1));
     }
     
     public static <S,A> AlternatingSequence<S,A> of(S s1, A a1, S s2, A a2, S s3) {
-        return new AlternatingSequence(Arrays.asList(s1, s2, s3), Arrays.asList(a1, a2));
+        return new AlternatingSequence<>(Arrays.asList(s1, s2, s3), Arrays.asList(a1, a2));
     }
     
     public static <S,A> AlternatingSequence<S,A> of(S s1, A a1, S s2, A a2, S s3, A a3, S s4) {
-        return new AlternatingSequence(Arrays.asList(s1, s2, s3, s4), Arrays.asList(a1, a2, a3));
+        return new AlternatingSequence<>(Arrays.asList(s1, s2, s3, s4), Arrays.asList(a1, a2, a3));
     }
     
     public static <S,A> AlternatingSequence<S,A> of(S s1, A a1, S s2, A a2, S s3, A a3, S s4, A a4, S s5) {
-        return new AlternatingSequence(Arrays.asList(s1, s2, s3, s4, s5), Arrays.asList(a1, a2, a3, a4));
+        return new AlternatingSequence<>(Arrays.asList(s1, s2, s3, s4, s5), Arrays.asList(a1, a2, a3, a4));
     }
     
-    public static <S,A> AlternatingSequence<S,A> of(S s1, A a1, Object... tail ) {
+    @SuppressWarnings("unchecked")
+	public static <S,A> AlternatingSequence<S,A> of(S s1, A a1, Object... tail ) {
         List<S> states = new LinkedList<>();
         List<A> actions = new LinkedList<>();
         
@@ -52,7 +54,7 @@ public class AlternatingSequence<S,A> {
             actions.add((A) tail[i+1]);
         }
         states.add((S) tail[tail.length-1]);
-        return new AlternatingSequence(states, actions);
+        return new AlternatingSequence<>(states, actions);
     }
     
     private final List<Object> items;
@@ -61,7 +63,7 @@ public class AlternatingSequence<S,A> {
         if ( states.size() != actions.size()+1 ) {
             throw new IllegalArgumentException("List sizes do not match");
         }
-        List itemsBuilder = new ArrayList<>(states.size() + actions.size());
+        List<Object> itemsBuilder = new ArrayList<>(states.size() + actions.size());
         Iterator<?> sts=states.iterator();
         for ( Iterator<?> acts=actions.iterator(); acts.hasNext(); ) {
             itemsBuilder.add(sts.next());
@@ -75,14 +77,16 @@ public class AlternatingSequence<S,A> {
         this.items = items;
     }
     
-    public S head() {
+    @SuppressWarnings("unchecked")
+	public S head() {
         return (S) items.get(0);
     }
     
     public AlternatingSequence<A,S> tail() {
-        return new AlternatingSequence(items.subList(1, items.size()) );
+        return new AlternatingSequence<>(items.subList(1, items.size()) );
     }
     
+    @SuppressWarnings("unchecked")
     public S last() {
         return (S) items.get(items.size()-1);
     }
@@ -119,7 +123,7 @@ public class AlternatingSequence<S,A> {
 
     @Override
     public String toString() {
-        return "ExecutionFragment{" + "items=" + items + '}';
+        return "[AlternatingSequence "+ items + ']';
     }
     
 }

@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 /**
  * Takes a {@link TransitionSystem}, makes a Graphviz drawing out of it.
- * @author michael
  */
 public class GraphvizPainter<S,A,P> {
     
