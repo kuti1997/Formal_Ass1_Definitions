@@ -1,14 +1,19 @@
 package il.ac.bgu.cs.fvm;
 
-import static il.ac.bgu.cs.fvm.AutomatonTest.State.*;
+import static il.ac.bgu.cs.fvm.AutomatonTest.State.A;
+import static il.ac.bgu.cs.fvm.AutomatonTest.State.B;
+import static il.ac.bgu.cs.fvm.AutomatonTest.State.C;
+import static il.ac.bgu.cs.fvm.AutomatonTest.State.D;
+import static il.ac.bgu.cs.fvm.AutomatonTest.State.G;
+import static il.ac.bgu.cs.fvm.AutomatonTest.State.H;
+import static il.ac.bgu.cs.fvm.util.CollectionHelper.set;
 import static org.junit.Assert.assertEquals;
 
+import java.util.Set;
 
 import org.junit.Test;
 
 import il.ac.bgu.cs.fvm.automata.Automaton;
-import static il.ac.bgu.cs.fvm.util.CollectionHelper.set;
-import java.util.Set;
 
 
 public class AutomatonTest {
@@ -19,7 +24,7 @@ public class AutomatonTest {
     
 	@Test
 	public void automatonTest() {
-		Automaton<State, String> aut = new Automaton();
+		Automaton<State, String> aut = new Automaton<State, String>();
 
 		Set<String> a = set("a");
 		Set<String> ab = set("a", "b");

@@ -40,7 +40,8 @@ public class CodePrinterTests {
         System.out.println(prt.print(ts));
     }
 
-    public static void t2() {
+    @SuppressWarnings("unchecked")
+	public static void t2() {
         TransitionSystem<Pair<String, Integer>, String, Boolean> ts = FvmFacade.createInstance().createTransitionSystem();
 
         ts.addState(p("1", 10));
@@ -62,7 +63,8 @@ public class CodePrinterTests {
         System.out.println(new TsPrinter().print(ts));
     }
 
-    public static void t3() {
+    @SuppressWarnings("unchecked")
+	public static void t3() {
         TransitionSystem<Pair<String, Integer>, Action, Boolean> ts = FvmFacade.createInstance().createTransitionSystem();
 
         ts.addState(p("1", 10));
@@ -104,7 +106,8 @@ public class CodePrinterTests {
         assertEquals(set(true), ts.getLabel(p("2", 20)));
     }
 
-    public void testCode() {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public void testCode() {
         TransitionSystem ts = FvmFacade.createInstance().createTransitionSystem();
         ts.addStates(p("1", 10), p("4", 40), p("3", 30), p("2", 20));
         ts.addActions(Action.valueOf("B"), Action.valueOf("D"), Action.valueOf("C"), Action.valueOf("A"));
