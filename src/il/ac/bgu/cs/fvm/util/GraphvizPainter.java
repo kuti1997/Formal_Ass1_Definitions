@@ -25,6 +25,14 @@ public class GraphvizPainter<S,A,P> {
         return new GraphvizPainter<>(Object::toString,Object::toString,Object::toString);
     }
     
+    public static GraphvizPainter<Pair<List<Boolean>, List<Boolean>>, List<Boolean>, Object> circuitPainter() {
+        return new GraphvizPainter<>(
+               s -> booleanListToString(s.second)+booleanListToString(s.first),
+               GraphvizPainter::booleanListToString,
+               Object::toString
+        );
+    }
+    
     public GraphvizPainter(Function<S, String> statePainter, Function<A, String> actionPainter, Function<P, String> apPainter) {
         this.statePainter = statePainter;
         this.actionPainter = actionPainter;
@@ -98,6 +106,10 @@ public class GraphvizPainter<S,A,P> {
               // connect AP node to s
               sb.append( apNodeId ).append( "->" ).append( idByState.get(s) ).append(";\n");
         });
+    }
+    
+    static String booleanListToString( List<Boolean> list ) {
+        return list.stream().map(b->b?"1":"0").collect(Collectors.joining());
     }
     
 }
