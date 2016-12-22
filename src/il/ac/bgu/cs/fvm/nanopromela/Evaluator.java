@@ -1,5 +1,8 @@
 package il.ac.bgu.cs.fvm.nanopromela;
 
+import static il.ac.bgu.cs.fvm.util.CollectionHelper.map;
+import static il.ac.bgu.cs.fvm.util.CollectionHelper.p;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +11,7 @@ import java.util.Vector;
 import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.BoolexprContext;
 import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.IntexprContext;
 import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.JoinedContext;
-import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.StmtContext;
+import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.StmtContext;;
 
 public class Evaluator {
 
@@ -166,8 +169,12 @@ public class Evaluator {
 		return evaluate(context.intexpr(0));
 	}
 
-	@SuppressWarnings("serial")
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> evaluate(JoinedContext context) throws Exception {
+		if (context.hsreadstmt()==null) {
+			throw new Exception("Not an interleaved (hsreadstmt) statement. See the NanoPromela.g4 file.");
+		}
+		
 		if (!context.hsreadstmt().ZEROCAPACITYCHANNAME().equals(context.hsreadstmt().ZEROCAPACITYCHANNAME()))
 			return null;
 
@@ -178,11 +185,7 @@ public class Evaluator {
 			throw new Exception("Incompatible hanshaking statements");
 
 		if (context.hsreadstmt().VARNAME() != null && context.hswritestmt().intexpr() != null)
-			return new HashMap<String, Object>(eval) {
-				{
-					put(context.hsreadstmt().VARNAME().getText(), evaluate(context.hswritestmt().intexpr()));
-				}
-			};
+			return map(p(context.hsreadstmt().VARNAME().getText(), evaluate(context.hswritestmt().intexpr())));
 		else
 			return eval;
 	}
