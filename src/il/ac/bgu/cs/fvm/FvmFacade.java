@@ -434,7 +434,7 @@ public interface FvmFacade {
 	 *            The automaton.
 	 * @return The product of {@code ts} with {@code aut}.
 	 */
-	<Sts, Saut, A, P> TransitionSystem<Pair<Sts, Saut>, A, P> product(TransitionSystem<Sts, A, P> ts,
+	<Sts, Saut, A, P> TransitionSystem<Pair<Sts, Saut>, A, Saut> product(TransitionSystem<Sts, A, P> ts,
 			Automaton<Saut, P> aut);
 
 	/**
