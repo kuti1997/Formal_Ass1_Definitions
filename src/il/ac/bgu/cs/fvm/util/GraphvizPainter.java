@@ -21,7 +21,7 @@ public class GraphvizPainter<S,A,P> {
     private final Function<P,String> apPainter; 
     private final Map<S,String> idByState = new LinkedHashMap<>();
     
-    public static GraphvizPainter<? super Object,? super Object,? super Object> toStringPainter() {
+    public static GraphvizPainter<? extends Object,? extends Object,? extends Object> toStringPainter() {
         return new GraphvizPainter<>(Object::toString,Object::toString,Object::toString);
     }
     
