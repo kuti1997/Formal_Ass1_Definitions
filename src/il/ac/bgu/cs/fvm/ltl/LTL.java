@@ -10,19 +10,19 @@ public abstract class LTL<L> {
 		return new And<>(l, r);
 	}
 
-	public static <L> Until<L> until(LTL<L> l, LTL<L> r) {
+	public static <L> LTL<L> until(LTL<L> l, LTL<L> r) {
 		return new Until<>(l, r);
 	}
 
-	public static <L> Not<L> not(LTL<L> l) {
+	public static <L> LTL<L> not(LTL<L> l) {
 		return new Not<>(l);
 	}
 
-	public static <L> Next<L> next(LTL<L> l) {
+	public static <L> LTL<L> next(LTL<L> l) {
 		return new Next<>(l);
 	}
 
-	public static <L> TRUE<L> true_() {
+	public static <L> LTL<L> true_() {
 		return new TRUE<>();
 	}
 
