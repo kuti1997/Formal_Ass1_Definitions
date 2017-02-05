@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Set;
 
 import il.ac.bgu.cs.fvm.automata.Automaton;
+import il.ac.bgu.cs.fvm.automata.MultiColorAutomaton;
 import il.ac.bgu.cs.fvm.channelsystem.ChannelSystem;
 import il.ac.bgu.cs.fvm.circuits.Circuit;
+import il.ac.bgu.cs.fvm.ltl.LTL;
 import il.ac.bgu.cs.fvm.programgraph.ActionDef;
 import il.ac.bgu.cs.fvm.programgraph.ConditionDef;
 import il.ac.bgu.cs.fvm.programgraph.ProgramGraph;
@@ -492,5 +494,25 @@ public interface FvmFacade {
 	 */
 	<S, A, P, Saut> VerificationResult<S> verifyAnOmegaRegularProperty(TransitionSystem<S, A, P> ts,
 			Automaton<Saut, P> aut);
+
+	/**
+	 * Translation of Linear Temporal Logic (LTL) formula to a Nondeterministic
+	 * Buchi Automaton (NBA).
+	 * 
+	 * @param ltl
+	 *            The LTL formula represented as a parse-tree.
+	 * @return An automaton A such that L_\omega(A)=Words(ltsl)
+	 */
+	<L> Automaton<?, L> LTL2NBA(LTL<L> ltl);
+
+	/**
+	 * A translation of a Generalized Buchi Automaton (GNBA) to a
+	 * Nondeterministic Buchi Automaton (NBA).
+	 * 
+	 * @param mulAut
+	 *            An automaton with a set of accepting states (colors).
+	 * @return An equivalent automaton with a single set of accepting states.
+	 */
+	<State, L> Automaton<Pair<State, Integer>, L> GNBA2NBA(MultiColorAutomaton<State, L> mulAut);
 
 }

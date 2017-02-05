@@ -720,6 +720,31 @@ public class GoalStructure {
 			@XmlAttribute(name = "sid")
 			protected Long		sid;
 
+			@Override
+			public int hashCode() {
+				final int prime = 31;
+				int result = 1;
+				result = prime * result + ((sid == null) ? 0 : sid.hashCode());
+				return result;
+			}
+
+			@Override
+			public boolean equals(Object obj) {
+				if (this == obj)
+					return true;
+				if (obj == null)
+					return false;
+				if (getClass() != obj.getClass())
+					return false;
+				State other = (State) obj;
+				if (sid == null) {
+					if (other.sid != null)
+						return false;
+				} else if (!sid.equals(other.sid))
+					return false;
+				return true;
+			}
+
 			/**
 			 * Gets the value of the label property.
 			 * 
@@ -945,6 +970,12 @@ public class GoalStructure {
 		@XmlAccessorType(XmlAccessType.FIELD)
 		@XmlType(name = "", propOrder = { "from", "to", "label", "properties" })
 		public static class Transition {
+
+			@Override
+			public String toString() {
+				return "Transition [from=" + from + ", to=" + to + ", label=" + label + ", properties=" + properties
+						+ "]";
+			}
 
 			@XmlElement(name = "From")
 			protected Long		from;
