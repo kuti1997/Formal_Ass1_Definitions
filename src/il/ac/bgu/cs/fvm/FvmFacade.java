@@ -501,7 +501,7 @@ public interface FvmFacade {
 	 * 
 	 * @param ltl
 	 *            The LTL formula represented as a parse-tree.
-	 * @return An automaton A such that L_\omega(A)=Words(ltsl)
+	 * @return An automaton A such that L_\omega(A)=Words(ltl)
 	 */
 	<L> Automaton<?, L> LTL2NBA(LTL<L> ltl);
 
@@ -513,6 +513,6 @@ public interface FvmFacade {
 	 *            An automaton with a set of accepting states (colors).
 	 * @return An equivalent automaton with a single set of accepting states.
 	 */
-	<State, L> Automaton<Pair<State, Integer>, L> GNBA2NBA(MultiColorAutomaton<State, L> mulAut);
+	<L> Automaton<?, L> GNBA2NBA(MultiColorAutomaton<?, L> mulAut);
 
 }
