@@ -50,6 +50,9 @@ public class AutomatonIO {
 		gs.acc.stateID = new NoDuplicatesList<>();
 		gs.transitionSet.transition = new NoDuplicatesList<>();
 
+		
+		Set<L> symbols = new HashSet<L>(); 
+		
 		for (Entry<State, Map<Set<L>, Set<State>>> ent : aut.getTransitions().entrySet()) {
 
 			for (Entry<Set<L>, Set<State>> tr : ent.getValue().entrySet()) {
@@ -57,6 +60,7 @@ public class AutomatonIO {
 
 				for (L s : symbol) {
 					gs.alphabet.proposition.add(s.toString());
+					symbols.add(s);
 				}
 			}
 		}
@@ -80,7 +84,7 @@ public class AutomatonIO {
 					label += s + " ";
 				}
 
-				for (String s : gs.alphabet.proposition) {
+				for (L s : symbols) {
 					if (!symbol.contains(s)) {
 						label += "~" + s + " ";
 					}
