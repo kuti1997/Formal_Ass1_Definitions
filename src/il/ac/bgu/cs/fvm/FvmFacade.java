@@ -384,7 +384,8 @@ public interface FvmFacade {
 	 *            The circuit to translate into a {@link TransitionSystem}.
 	 * @return A {@link TransitionSystem} representing {@code c}.
 	 */
-	TransitionSystem<Pair<List<Boolean>, List<Boolean>>, List<Boolean>, Object> transitionSystemFromCircuit(Circuit c);
+	TransitionSystem<Pair<Map<String, Boolean>, Map<String, Boolean>>, Map<String, Boolean>, Object> 
+        transitionSystemFromCircuit(Circuit c);
 
 	/**
 	 * Creates a {@link TransitionSystem} from a program graph.

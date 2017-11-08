@@ -10,6 +10,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+import javafx.scene.control.cell.MapValueFactory;
 
 /**
  * Takes a {@link TransitionSystem}, makes a Graphviz drawing out of it.
@@ -29,8 +32,17 @@ public class GraphvizPainter<S,A,P> {
      * A painter that prints the transition system by calling {@link Object#toString()} on its objects.
      * @return A new painter.
      */
-    public static GraphvizPainter<? super Object,? super Object,? super Object> toStringPainter() {
+    public static GraphvizPainter toStringPainter() {
         return new GraphvizPainter<>(Object::toString,Object::toString,Object::toString);
+    }
+    
+    
+    public static GraphvizPainter<Pair<Map<String,Boolean>,Map<String,Boolean>>, Map<String,Boolean>, Object> circuitPainter() {
+        return new GraphvizPainter<>(
+                (Pair<Map<String,Boolean>,Map<String,Boolean>> state) -> mapValues(state.first) + mapValues(state.second),
+                (Map<String,Boolean> act) -> mapValues(act), 
+                Object::toString
+        );
     }
     
     public GraphvizPainter(Function<S, String> statePainter, Function<A, String> actionPainter, Function<P, String> apPainter) {
@@ -106,6 +118,12 @@ public class GraphvizPainter<S,A,P> {
               // connect AP node to s
               sb.append( apNodeId ).append( "->" ).append( idByState.get(s) ).append(";\n");
         });
+    }
+    
+    private static String mapValues(Map<String,Boolean> mp) {
+        return  mp.keySet().stream().sorted()
+                                    .map(mp::get)
+                                    .map( b -> b?"1":"0" ).collect( joining("") );
     }
     
 }

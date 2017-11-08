@@ -1,10 +1,12 @@
 package il.ac.bgu.cs.fvm.examples;
 
-import java.util.LinkedList;
-import java.util.List;
 
 import il.ac.bgu.cs.fvm.circuits.Circuit;
-import static java.util.Arrays.asList;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+import static il.ac.bgu.cs.fvm.util.CollectionHelper.singeltonMap;
+import static il.ac.bgu.cs.fvm.util.CollectionHelper.map;
 
 /**
  * The circuit on page 27, Figure 2.2
@@ -13,13 +15,10 @@ public class ExampleCircuit implements Circuit {
 
     /**
      * Implements the relation r = x \/ r
-     *
      */
     @Override
-    public List<Boolean> updateRegisters(List<Boolean> registers, List<Boolean> inputs) {
-        List<Boolean> r = new LinkedList<>();
-        r.add(registers.get(0) || inputs.get(0));
-        return r;
+    public Map<String, Boolean> updateRegisters(Map<String,Boolean> inputs, Map<String,Boolean> registers) {
+        return Collections.singletonMap("r", registers.get("r") || inputs.get("x") );
     }
 
     /**
@@ -27,25 +26,23 @@ public class ExampleCircuit implements Circuit {
      *
      */
     @Override
-    public List<Boolean> computeOutputs(List<Boolean> registers, List<Boolean> inputs) {
-        List<Boolean> y = new LinkedList<>();
-        y.add(!(registers.get(0) ^ inputs.get(0)));
-        return y;
+    public Map<String, Boolean> computeOutputs(Map<String,Boolean> inputs, Map<String,Boolean> registers) {
+        return singeltonMap("y", !(inputs.get("x") ^ registers.get("r")) );
     }
 
     @Override
-    public List<String> getInputPortNames() {
-        return asList("x");
+    public Set<String> getInputPortNames() {
+        return Collections.singleton("x");
     }
 
     @Override
-    public List<String> getRegisterNames() {
-        return asList("r");
+    public Set<String> getRegisterNames() {
+        return Collections.singleton("r");
     }
 
     @Override
-    public List<String> getOutputPortNames() {
-        return asList("y");
+    public Set<String> getOutputPortNames() {
+        return Collections.singleton("y");
     }
 
 }

@@ -1,6 +1,5 @@
 package il.ac.bgu.cs.fvm.nanopromela;
 
-import static il.ac.bgu.cs.fvm.util.CollectionHelper.map;
 import static il.ac.bgu.cs.fvm.util.CollectionHelper.p;
 
 import java.util.HashMap;
@@ -11,7 +10,9 @@ import java.util.Vector;
 import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.BoolexprContext;
 import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.IntexprContext;
 import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.JoinedContext;
-import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.StmtContext;;
+import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.StmtContext;import static il.ac.bgu.cs.fvm.util.CollectionHelper.singeltonMap;
+import static il.ac.bgu.cs.fvm.util.CollectionHelper.map;
+;
 
 public class Evaluator {
 

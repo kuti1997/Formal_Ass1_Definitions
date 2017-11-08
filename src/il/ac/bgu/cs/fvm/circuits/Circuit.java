@@ -1,6 +1,7 @@
 package il.ac.bgu.cs.fvm.circuits;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * An interface for an abstract representation of logic circuits.
@@ -8,47 +9,44 @@ import java.util.List;
 public interface Circuit {
 
     /**
-     * A method that returns a list of names of the input ports.
+     * Returns a list of names of the input ports.
      *
-     * @return A list of objects representing the names of the input ports.
+     * @return the names of the input ports.
      */
-    List<String> getInputPortNames();
+    Set<String> getInputPortNames();
 
     /**
-     * A method that returns a list of names of the registers.
+     * Returns the names of the registers.
      *
-     * @return A list of objects representing the names of the registers.
+     * @return the names of the registers.
      */
-    List<String> getRegisterNames();
+    Set<String> getRegisterNames();
 
     /**
-     * A method that returns a list of names of the output ports
+     * Return the names of the output ports
      *
-     * @return A list of objects representing the names of the output ports.
+     * @return the names of the output ports.
      */
-    List<String> getOutputPortNames();
+    Set<String> getOutputPortNames();
 
     /**
-     * A method that updates the values of the registers based on the values of
-     * the inputs and the current values of the registers. The Lengths of the
-     * Boolean lists are expected to be of the same length as the lengths of
-     * the corresponding name lists.
+     * Calculate register values for the next phase, based on input values
+     * and register values at the current phase. All register names must be present. If 
+     * the register contains 0, the return value should map its name to {@code false}.
      *
-     * @param registers
-     * @param inputs
+     * @param inputs input values, mapped by input name.
+     * @param registers register values, mapped by register name.
      * @return New register values.
      */
-    public List<Boolean> updateRegisters(List<Boolean> registers, List<Boolean> inputs);
+    public Map<String,Boolean> updateRegisters(Map<String,Boolean> inputs, Map<String,Boolean> registers);
 
     /**
-     * A method that updates the values of the registers based on the values of
-     * the inputs and the current values of the registers. The Lengths of the
-     * Boolean lists are expected to be of the same length as the lengths of the
-     * corresponding name lists.
+     * Calculate output values, based on input and register values. All output port names
+     * must be present. If the output port has 0, the return value should map its name to {@code false}.
      *
-     * @param registers A list representing the truth value of each register.
      * @param inputs A list representing the truth value of each output.
+     * @param registers A list representing the truth value of each register.
      * @return Output values.
      */
-    public List<Boolean> computeOutputs(List<Boolean> registers, List<Boolean> inputs);
+    public Map<String, Boolean> computeOutputs(Map<String,Boolean> inputs, Map<String,Boolean> registers);
 }
