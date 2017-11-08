@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 
 /**
  * Takes a {@link TransitionSystem}, makes a Graphviz drawing out of it.
+ * @param <A> Type of actions
+ * @param <P> Type of atomic propositions
+ * @param <S> Type of states
  */
 public class GraphvizPainter<S,A,P> {
     
@@ -21,6 +24,11 @@ public class GraphvizPainter<S,A,P> {
     private final Function<P,String> apPainter; 
     private final Map<S,String> idByState = new LinkedHashMap<>();
     
+    
+    /**
+     * A painter that prints the transition system by calling {@link Object#toString()} on its objects.
+     * @return A new painter.
+     */
     public static GraphvizPainter<? super Object,? super Object,? super Object> toStringPainter() {
         return new GraphvizPainter<>(Object::toString,Object::toString,Object::toString);
     }

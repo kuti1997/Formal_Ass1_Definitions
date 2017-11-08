@@ -28,7 +28,7 @@ import il.ac.bgu.cs.fvm.goal.AutomatonIO;
 /**
  * An non-deterministic automaton, composed of states and transitions.
  * 
- * @param <STATE>
+ * @param <State>
  *            Type of states.
  * @param <L>
  *            Type of transitions/alphabet the automaton understands.

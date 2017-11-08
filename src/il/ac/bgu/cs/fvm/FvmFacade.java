@@ -23,7 +23,7 @@ import java.util.Map;
  * Interface for the entry point class to the HW in this class. Our
  * client/testing code interfaces with the student solutions through this
  * interface only.
- * <p>
+ * <br>
  * More about facade: {@linkplain http://www.vincehuston.org/dp/facade.html}.
  */
 public interface FvmFacade {
@@ -436,8 +436,8 @@ public interface FvmFacade {
 	 *            The automaton.
 	 * @return The product of {@code ts} with {@code aut}.
 	 */
-	<Sts, Saut, A, P> TransitionSystem<Pair<Sts, Saut>, A, Saut> product(TransitionSystem<Sts, A, P> ts,
-			Automaton<Saut, P> aut);
+	<Sts, Saut, A, P> TransitionSystem<Pair<Sts, Saut>, A, Saut> 
+        product(TransitionSystem<Sts, A, P> ts, Automaton<Saut, P> aut);
 
 	/**
 	 * Construct a program graph from nanopromela code.
@@ -487,7 +487,7 @@ public interface FvmFacade {
 	 * @param ts
 	 *            The transition system.
 	 * @param aut
-	 *            A Buchi automaton for the words that do not satisfy the
+	 *            A Büchi automaton for the words that do not satisfy the
 	 *            property.
 	 * @return A VerificationSucceeded object or a VerificationFailed object
 	 *         with a counterexample.
@@ -497,8 +497,10 @@ public interface FvmFacade {
 
 	/**
 	 * Translation of Linear Temporal Logic (LTL) formula to a Nondeterministic
-	 * Buchi Automaton (NBA).
+	 * Büchi Automaton (NBA).
 	 * 
+     * @param <L>
+     *            Type of resultant automaton transition alphabet
 	 * @param ltl
 	 *            The LTL formula represented as a parse-tree.
 	 * @return An automaton A such that L_\omega(A)=Words(ltl)
@@ -506,9 +508,11 @@ public interface FvmFacade {
 	<L> Automaton<?, L> LTL2NBA(LTL<L> ltl);
 
 	/**
-	 * A translation of a Generalized Buchi Automaton (GNBA) to a
-	 * Nondeterministic Buchi Automaton (NBA).
+	 * A translation of a Generalized Büchi Automaton (GNBA) to a
+	 * Nondeterministic Büchi Automaton (NBA).
 	 * 
+     * @param <L>
+     *            Type of resultant automaton transition alphabet
 	 * @param mulAut
 	 *            An automaton with a set of accepting states (colors).
 	 * @return An equivalent automaton with a single set of accepting states.
