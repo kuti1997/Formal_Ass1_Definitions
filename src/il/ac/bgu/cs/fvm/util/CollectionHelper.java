@@ -3,7 +3,6 @@ package il.ac.bgu.cs.fvm.util;
 import il.ac.bgu.cs.fvm.programgraph.PGTransition;
 import il.ac.bgu.cs.fvm.transitionsystem.Transition;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -54,12 +53,6 @@ public class CollectionHelper {
         return IntStream.range(0, pairs.length)
                 .mapToObj(i -> pairs[i])
                 .collect(Collectors.toMap(Pair::getFirst, Pair::getSecond));
-    }
-
-    public static <K,V> Map<K,V> singeltonMap(K key, V value ) {
-        Map<K,V> res = new HashMap<>();
-        res.put(key, value);
-        return res;
     }
     
     public static  <T1,T2> Stream<Pair<T1,T2>> product(Set<T1> s1, Set<T2> s2) {

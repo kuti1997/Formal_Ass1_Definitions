@@ -27,9 +27,11 @@ public interface ProgramGraph<L, A> {
     /**
      * Add an initial state.
      *
-     * @param location An initial location
+     * @param location An location already in the graph
+     * @param isInitial whether {@code location} should be an initial location in {@code this}.
+     * @throws IllegalArgumentException, if {@code location} is not a location in {@code this}.
      */
-    void addInitialLocation(L location);
+    void setInitial(L location, boolean isInitial);
 
     /**
      * Ann a new location (node) to the program graph.

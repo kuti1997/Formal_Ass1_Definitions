@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+// TODO add equals and hashcode.
 public class MultiColorAutomaton<State, L> {
 
 	private Set<State> initial;

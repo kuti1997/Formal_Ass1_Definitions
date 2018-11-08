@@ -27,7 +27,7 @@ public class BookingSystemBuilder {
 
 		ts.addState(State.S0);
 		ts.addState(State.S1);
-		ts.addInitialState(State.S0);
+		ts.setInitial(State.S0, true);
 
 		ts.addAction(Action.scan);
 		ts.addAction(Action.store);
@@ -46,7 +46,7 @@ public class BookingSystemBuilder {
 
 		ts.addState(State.S0);
 		ts.addState(State.S1);
-		ts.addInitialState(State.S0);
+		ts.setInitial(State.S0, true);
 
 		ts.addAction(Action.prt_cmd);
 		ts.addAction(Action.store);
@@ -65,7 +65,7 @@ public class BookingSystemBuilder {
 
 		ts.addState(State.S0);
 		ts.addState(State.S1);
-		ts.addInitialState(State.S0);
+		ts.setInitial(State.S0, true);
 
 		ts.addAction(Action.prt_cmd);
 		ts.addAction(Action.print);

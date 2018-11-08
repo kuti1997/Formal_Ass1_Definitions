@@ -11,8 +11,6 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
-import javafx.scene.control.cell.MapValueFactory;
 
 /**
  * Takes a {@link TransitionSystem}, makes a Graphviz drawing out of it.

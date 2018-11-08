@@ -39,7 +39,7 @@ public class AlternatingBitProtocolBuilder {
         pg.addLocation(pr_msg_1);
         pg.addLocation(snd_ack_1);
 
-        pg.addInitialLocation(wait_0);
+        pg.setInitial(wait_0, true);
 
         pg.addTransition(new PGTransition<>(wait_0, "", "C?y", pr_msg_0));
         pg.addTransition(new PGTransition<>(pr_msg_0, "y == 1", "", wait_0));
@@ -76,7 +76,7 @@ public class AlternatingBitProtocolBuilder {
         pg.addLocation(wait_1);
         pg.addLocation(chk_ack_1);
 
-        pg.addInitialLocation(snd_msg_0);
+        pg.setInitial(snd_msg_0, true);
 
         pg.addTransition(new PGTransition<>(snd_msg_0, "size(C)<3", "C!0", st_tmr_0));
         pg.addTransition(new PGTransition<>(snd_msg_0, "", "", st_tmr_0));
@@ -101,17 +101,17 @@ public class AlternatingBitProtocolBuilder {
     private static ProgramGraph<String, String> buildTimer() {
         ProgramGraph<String, String> pg = fvmFacadeImpl.createProgramGraph();
 
-        String on = "on";
-        String off = "off";
+        String onLocation = "on";
+        String offLocation = "off";
 
-        pg.addLocation(on);
-        pg.addLocation(off);
+        pg.addLocation(onLocation);
+        pg.addLocation(offLocation);
 
-        pg.addInitialLocation(off);
+        pg.setInitial(offLocation, true);
 
-        pg.addTransition(new PGTransition<>(on, "", "_tmr_off?", off));
-        pg.addTransition(new PGTransition<>(on, "", "_timeout!", off));
-        pg.addTransition(new PGTransition<>(off, "", "_tmr_on?", on));
+        pg.addTransition(new PGTransition<>(onLocation, "", "_tmr_off?", offLocation));
+        pg.addTransition(new PGTransition<>(onLocation, "", "_timeout!", offLocation));
+        pg.addTransition(new PGTransition<>(offLocation, "", "_tmr_on?", onLocation));
 
         return pg;
 

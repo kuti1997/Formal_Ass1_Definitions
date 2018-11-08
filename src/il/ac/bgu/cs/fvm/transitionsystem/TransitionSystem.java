@@ -42,18 +42,19 @@ public interface TransitionSystem<STATE,ACTION,ATOMIC_PROPOSITION> {
 	 * Add an action.
 	 * Note: This method must be idempotent.
      * 
-	 * @param action A name for the new action.
+	 * @param anAction A name for the new action.
 	 */
-	void addAction(ACTION action);
+	void addAction(ACTION anAction);
 
 	/**
 	 * Add an initial state.
 	 * Note: This method must be idempotent.
      * 
-	 * @param state A state to add to the set of initial states.
-	 * @throws FVMException If the state is not in the set of states.
+	 * @param aState A state to add to the set of initial states.
+     * @param isInitial Whether {@code state} should be an initial state of {@code this}.
+	 * @throws StateNotFoundException If the state is not in the set of states.
 	 */
-	void addInitialState(STATE state) throws FVMException;
+	void setInitial(STATE aState, boolean isInitial) throws StateNotFoundException;
 
 	/**
 	 * Add a state.
@@ -69,7 +70,7 @@ public interface TransitionSystem<STATE,ACTION,ATOMIC_PROPOSITION> {
 	 * Note: This method must be idempotent.
      * 
 	 * @param t The transition to add.
-	 * @throws FVMException If the states and the actions do not exist.
+	 * @throws FVMException If the states or the action does not exist.
 	 */
 	void addTransition(Transition<STATE,ACTION> t) throws FVMException;
     
@@ -78,9 +79,9 @@ public interface TransitionSystem<STATE,ACTION,ATOMIC_PROPOSITION> {
      * Usage:
      * {@code ts.addTransitionFrom(a).action(alpha).to(b);}
      * 
-     * <em>NOTE:</em> These methods have default implementation, no need to implement
-     * it yourself. But you might want to look at the mechanism, if you're into 
-     * internal DSLs.
+     * <em>NOTE:</em> These methods have default implementation, no need to 
+     * implement it yourself. But you might want to look at the mechanism, if 
+     * you're into internal DSLs.
      * 
      * @param s The starting point of this transition.
      * @return A phase 1 transition builder.
@@ -121,6 +122,7 @@ public interface TransitionSystem<STATE,ACTION,ATOMIC_PROPOSITION> {
 	 * @param l An atomic proposition.
 	 * @throws FVMException
 	 *             When the label is not an atomic proposition.
+     * @throws StateNotFoundException if {@code s} is not a member of {@code this}' state set.
 	 */
 	void addToLabel(STATE s, ATOMIC_PROPOSITION l) throws FVMException;
 
@@ -178,13 +180,6 @@ public interface TransitionSystem<STATE,ACTION,ATOMIC_PROPOSITION> {
 	void removeAtomicProposition(ATOMIC_PROPOSITION p) throws FVMException;
 
 	/**
-	 * Remove a state from the set of initial states.
-	 * 
-	 * @param state The name of the state to remove.
-	 */
-	void removeInitialState(STATE state);
-
-	/**
 	 * atomic proposition, the method returns without changing anything.
 	 * 
 	 * @param s A state.
@@ -196,8 +191,8 @@ public interface TransitionSystem<STATE,ACTION,ATOMIC_PROPOSITION> {
 	 * Remove a state.
 	 * 
 	 * @param state The name of the state to remove.
-	 * @throws FVMException If the state is in use by a transition, is labeled, or is in
-	 *                      the set of initial states.
+	 * @throws FVMException If the state is in use by a transition, is labeled,
+     *                      or is in the set of initial states.
 	 */
 	void removeState(STATE state) throws FVMException;
 

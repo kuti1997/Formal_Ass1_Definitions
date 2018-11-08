@@ -59,8 +59,8 @@ public class Automaton<State, L> extends MultiColorAutomaton<State, L> {
 				Constant con1 = new Constant("this.gff");
 				Constant con2 = new Constant("other.gff");
 
-				Lval lval1 = new Lval("th", new Expression[] {});
-				Lval lval2 = new Lval("ot", new Expression[] {});
+				Lval lval1 = new Lval("th", new Expression[]{});
+				Lval lval2 = new Lval("ot", new Expression[]{});
 
 				CodecRepository.add(0, new GFFCodec());
 

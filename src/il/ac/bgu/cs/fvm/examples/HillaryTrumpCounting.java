@@ -20,7 +20,7 @@ public class HillaryTrumpCounting {
 
 		asList("counting", "twin", "hwin").forEach(s -> pg.addLocation(s));
 
-		pg.addInitialLocation("counting");
+		pg.setInitial("counting",true);
 
 		asList(pgtransition("counting", "t<270 && alabama==0", "atomic{t:=t+9;alabama:=1}", "counting"), pgtransition("counting", "h<270 && alabama==0", "atomic{h:=h+9;alabama:=1}", "counting"), pgtransition("counting", "t<270 && montana==0", "atomic{t:=t+3;montana:=1}", "counting"),
 				pgtransition("counting", "h<270 && montana==0", "atomic{h:=h+3;montana:=1}", "counting"), pgtransition("counting", "t<270 && alaska==0", "atomic{t:=t+3;alaska:=1}", "counting"), pgtransition("counting", "h<270 && alaska==0", "atomic{h:=h+3;alaska:=1}", "counting"),
@@ -74,7 +74,7 @@ public class HillaryTrumpCounting {
 
 		asList("counting", "twin", "hwin").forEach(s -> pg.addLocation(s));
 
-		pg.addInitialLocation("counting");
+		pg.setInitial("counting", true);
 
 		asList(pgtransition("counting", "t<270 && alabama==0", "atomic{t:=t+9;alabama:=1}", "counting"), pgtransition("counting", "h<270 && alabama==0", "atomic{h:=h+9;alabama:=1}", "counting"), pgtransition("counting", "t<270 && montana==0", "atomic{t:=t+3;montana:=1}", "counting"),
 				pgtransition("counting", "h<270 && montana==0", "atomic{h:=h+3;montana:=1}", "counting"), pgtransition("counting", "t<270 && alaska==0", "atomic{t:=t+3;alaska:=1}", "counting"), pgtransition("counting", "h<270 && alaska==0", "atomic{h:=h+3;alaska:=1}", "counting"),

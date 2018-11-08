@@ -71,7 +71,7 @@ public class CodePrinterTests {
         ts.addState(p("2", 20));
         ts.addState(p("3", 30));
         ts.addState(p("4", 40));
-        ts.addInitialState(p("4", 40));
+        ts.setInitial(p("4", 40), true);
         ts.addAllActions(Action.values());
         ts.addAtomicProposition(Boolean.TRUE);
         ts.addAtomicProposition(Boolean.FALSE);

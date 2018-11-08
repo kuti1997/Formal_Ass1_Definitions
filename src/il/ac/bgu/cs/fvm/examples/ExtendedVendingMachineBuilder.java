@@ -28,7 +28,7 @@ public class ExtendedVendingMachineBuilder {
         pg.addLocation(start);
         pg.addLocation(select);
 
-        pg.addInitialLocation(start);
+        pg.setInitial(start, true);
 
         pg.addTransition(new PGTransition<>(start, "true", "coin", select));
         pg.addTransition(new PGTransition<>(start, "true", "refill", start));

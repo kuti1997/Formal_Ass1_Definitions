@@ -19,7 +19,7 @@ public class SemaphoreBasedMutualExclusionBuilder {
         pg.addLocation(wait);
         pg.addLocation(crit);
 
-        pg.addInitialLocation(noncrit);
+        pg.setInitial(noncrit, true);
 
         pg.addTransition(new PGTransition<>(noncrit, "true", "", wait));
         pg.addTransition(new PGTransition<>(wait, "y>0", "y:=y-1", crit));

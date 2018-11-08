@@ -19,7 +19,7 @@ public class CollatzProgramGraphBuilder {
         pg.addLocation(running);
         pg.addLocation(finished);
 
-        pg.addInitialLocation(running);
+        pg.setInitial(running, true);
 
         pg.addTransition(new PGTransition<>(running, "x % 2 == 1 && x != 1", "x:= (3 * x) + 1", running));
         pg.addTransition(new PGTransition<>(running, "x % 2 == 0", "x:= x / 2", running));

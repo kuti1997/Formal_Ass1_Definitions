@@ -10,7 +10,7 @@ import java.util.Vector;
 import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.BoolexprContext;
 import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.IntexprContext;
 import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.JoinedContext;
-import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.StmtContext;import static il.ac.bgu.cs.fvm.util.CollectionHelper.singeltonMap;
+import il.ac.bgu.cs.fvm.nanopromela.NanoPromelaParser.StmtContext;
 import static il.ac.bgu.cs.fvm.util.CollectionHelper.map;
 ;
 

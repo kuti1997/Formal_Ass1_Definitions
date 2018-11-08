@@ -33,7 +33,7 @@ public class VendingMachineBuilder {
         vendingMachine.addState(select);
         vendingMachine.addState(beer);
 
-        vendingMachine.addInitialState(pay);
+        vendingMachine.setInitial(pay, true);
 
         vendingMachine.addAction(insertCoin);
         vendingMachine.addAction(getBeer);

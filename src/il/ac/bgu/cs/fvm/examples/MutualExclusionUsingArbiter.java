@@ -16,8 +16,8 @@ public class MutualExclusionUsingArbiter {
 		TransitionSystem<TsState, MuAction, String> ts = fvmFacadeImpl.createTransitionSystem();
 
 		ts.addAllStates(TsState.values());
-		ts.addInitialState(TsState.NonCrit);
         ts.addAllActions(MuAction.values());
+		ts.setInitial(TsState.NonCrit, true);
 
 		ts.addTransitionFrom(TsState.NonCrit).action(MuAction.Request).to(TsState.Crit);
         ts.addTransitionFrom(TsState.Crit).action(MuAction.Release).to(TsState.NonCrit);
@@ -29,8 +29,8 @@ public class MutualExclusionUsingArbiter {
 		TransitionSystem<ArState, MuAction, String> ts = fvmFacadeImpl.createTransitionSystem();
 
 		ts.addAllStates(ArState.values());
-		ts.addInitialState(ArState.Unlock);
         ts.addAllActions(MuAction.values());
+		ts.setInitial(ArState.Unlock, true);
 
 		ts.addTransition(new Transition<>(ArState.Unlock, MuAction.Request, ArState.Lock));
 		ts.addTransition(new Transition<>(ArState.Lock, MuAction.Release, ArState.Unlock));

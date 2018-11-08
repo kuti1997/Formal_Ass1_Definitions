@@ -207,7 +207,7 @@ public class StAXTransitionSystemXmlFormat implements TransitionSystemXmlFormat 
 
 				case kInitialState:
 					try {
-						ts.addInitialState(atts.getValue(attState));
+						ts.setInitial(atts.getValue(attState), true);
 					} catch (FVMException e) {
 						errors.add(e);
 					}
